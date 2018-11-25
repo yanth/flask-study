@@ -4,9 +4,11 @@ from redis import Redis
 app = Flask(__name__)
 redis = Redis(host='redis', port=6379)
 
+
 @app.route('/')
 def hello():
     return render_template('index.html')
+
 
 @app.route('/posts')
 def posts():
@@ -14,11 +16,13 @@ def posts():
 
     return jsonify(Posts=sendMessages)
 
+
 @app.route('/add', methods=["POST"])
 def add():
     redis.lpush("posts", "access!")
 
     return "200"
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
