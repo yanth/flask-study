@@ -1,0 +1,13 @@
+# 何？
+- flask と redis で投稿と取得の方法を勉強しました。
+- あとちょっとvueの使い方も勉強
+
+# 使い方
+## ダウンロード
+> $ git clone https://github.com/yanth/flask-study.git
+
+## docker起動
+> $ docker-compose up
+
+## アクセス
+http://localhost:5000
