@@ -1,5 +1,6 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from redis import Redis
+import json
 
 app = Flask(__name__)
 redis = Redis(host='redis', port=6379)
@@ -19,10 +20,10 @@ def posts():
 
 @app.route('/add', methods=["POST"])
 def add():
-    redis.lpush("posts", "access!")
+    data = json.loads(request.data)
+    redis.lpush("posts", data["post"])
 
     return "200"
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)

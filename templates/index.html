@@ -9,6 +9,7 @@
   <body>
     <h3>hello!</h3>
     <div id="test1">
+      <textarea v-model="sendMessage" rows="8" cols="80"></textarea></br>
       <button v-on:click="addAccess()">access!</button>
       <button v-on:click="getPosts()">get!</button>
       <ul v-for="post in posts">
@@ -21,7 +22,8 @@
       el: '#test1',
       delimiters: ["[[", "]]"],
       data: {
-        posts: []
+        posts: [],
+        sendMessage: "hello"
       },
       methods: {
         getPosts: function(){
@@ -36,7 +38,10 @@
           });
         },
         addAccess: function(){
-          axios.post( '/add' )
+          console.log(this.sendMessage);
+          axios.post( '/add', {
+            post: this.sendMessage
+          })
           .then( response => {
             console.log(response.date);
           })
